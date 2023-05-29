@@ -16,6 +16,6 @@ if(WIN32)
     target_link_libraries(VisionCore ${JNI_LIBRARY})
 
     add_custom_command(TARGET VisionCore POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:VisionCore> ../../VisionStudio/libs/libVisionCore.dll
+            COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:VisionCore> ../../libs/libVisionCore.dll
             )
 endif()

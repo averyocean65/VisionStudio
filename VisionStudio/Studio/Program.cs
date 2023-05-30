@@ -8,8 +8,12 @@ public class Program
         Console.WriteLine("Welcome to Vision Studio!");
         
         // Testing
-        Core.Projects.AddProject("C:\\MyProject");
-        Core.Projects.AddProject("C:\\MySecondProject");
+        Console.WriteLine("Input a project to add!");
+        Console.Write("> ");
+        
+        
+        string projectToAdd = Console.ReadLine();
+        Core.Projects.AddProject(projectToAdd);
         
         Console.WriteLine("Test Deleting Projects...");
         

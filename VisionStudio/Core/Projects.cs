@@ -13,6 +13,13 @@ public static class Projects
         IO.CreateIfDoesntExist(projectListPath);
     }
 
+    private static bool IsValidProject(string path)
+    {
+        return Directory.Exists(path) &&
+               Directory.GetFiles(path)
+                   .Contains("manifest.json");
+    }
+
     public static void AddProject(string path)
     {
         string projectListPath = ProjectListPath();
@@ -30,7 +37,9 @@ public static class Projects
     public static string[] GetProjects()
     {
         string projectListPath = ProjectListPath();
-        return IO.ReadFileLines(projectListPath);
+        return IO.ReadFileLines(projectListPath)
+            .Where(x => Directory.Exists(x))
+            .ToArray();
     }
 
     public static void DeleteProject(string project)

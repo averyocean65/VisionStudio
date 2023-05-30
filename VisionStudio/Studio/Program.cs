@@ -10,6 +10,7 @@ public class Program
 
     public static void MainMenu()
     {
+        Console.Title = "Vision Studio";
         Console.Clear();
         
         Console.WriteLine("Welcome to Vision Studio!");
@@ -130,6 +131,8 @@ public class Program
         }
 
         // Show Project Information
+        Console.Title = $"{project.Value.Name}@{project.Value.Version} - Vision Studio";
+        
         Console.WriteLine();
         Console.WriteLine($"Name:       {project.Value.Name}");
         Console.WriteLine($"Version:    {project.Value.Version}");

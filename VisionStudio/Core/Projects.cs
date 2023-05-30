@@ -26,4 +26,18 @@ public static class Projects
 
         IO.AppendFile(projectListPath, path + "\n");
     }
+
+    public static string[] GetProjects()
+    {
+        string projectListPath = ProjectListPath();
+        return IO.ReadFileLines(projectListPath);
+    }
+
+    public static void DeleteProject(string project)
+    {
+        List<string> lines = IO.ReadFileLines(ProjectListPath()).ToList();
+        lines.Remove(project);
+        
+        IO.WriteFile(ProjectListPath(), string.Join("\n", lines));
+    }
 }

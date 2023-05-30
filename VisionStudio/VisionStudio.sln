@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisionStudio", "VisionStudio.csproj", "{C8532717-3823-4AF5-9D67-B5C16925C270}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Studio", "Studio\Studio.csproj", "{3DE20C2F-3074-48AF-A314-FE0C57F879C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{F6B357C9-D8FE-4C59-B0D3-1E467BD6E366}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +10,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C8532717-3823-4AF5-9D67-B5C16925C270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8532717-3823-4AF5-9D67-B5C16925C270}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8532717-3823-4AF5-9D67-B5C16925C270}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8532717-3823-4AF5-9D67-B5C16925C270}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DE20C2F-3074-48AF-A314-FE0C57F879C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DE20C2F-3074-48AF-A314-FE0C57F879C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DE20C2F-3074-48AF-A314-FE0C57F879C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DE20C2F-3074-48AF-A314-FE0C57F879C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6B357C9-D8FE-4C59-B0D3-1E467BD6E366}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6B357C9-D8FE-4C59-B0D3-1E467BD6E366}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6B357C9-D8FE-4C59-B0D3-1E467BD6E366}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6B357C9-D8FE-4C59-B0D3-1E467BD6E366}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,19 @@
-﻿namespace Core;
+﻿using Newtonsoft.Json;
 
-public static class Projects
+namespace Core;
+
+public struct Project
+{
+    /* JSON Values */
+    public string Name;
+    public string Version;
+    public string Author;
+
+    /* Runtime Values */
+    public string Path;
+}
+
+public static class ProjectManager
 {
     private static string ProjectListPath()
     {
@@ -44,6 +57,27 @@ public static class Projects
         return IO.ReadFileLines(projectListPath)
             .Where(x => Directory.Exists(x))
             .ToArray();
+    }
+
+    public static Project? LoadProject(string path)
+    {
+        if (!IsValidProject(path))
+            return null;
+        
+        // Get Manifest Path
+        string manifestPath = Path.Combine(path, "manifest.json");
+        
+        // Read Manifest
+        string manifest = IO.ReadFile(manifestPath);
+        
+        // Parse Manifest
+        JsonReader reader = new JsonTextReader(new StringReader(manifest));
+        JsonSerializer serializer = JsonSerializer.Create();
+        Project project = serializer.Deserialize<Project>(reader);
+        
+        // Set Project Path
+        project.Path = path;
+        return project;
     }
 
     public static void DeleteProject(string project)

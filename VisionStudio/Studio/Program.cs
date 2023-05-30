@@ -13,12 +13,17 @@ public class Program
         
         
         string projectToAdd = Console.ReadLine();
-        Core.Projects.AddProject(projectToAdd);
+        Core.ProjectManager.AddProject(projectToAdd);
+
+        Core.Project? project = Core.ProjectManager.LoadProject(projectToAdd);
+        if (project == null)
+            return;
         
-        Console.WriteLine("Test Deleting Projects...");
+        Console.WriteLine("Project loaded!");
         
-        Console.WriteLine("Current Projects:");
-        foreach(string project in Core.Projects.GetProjects())
-            Console.WriteLine(project);
+        Console.WriteLine($"Name: {project.Value.Name}");
+        Console.WriteLine($"Version: {project.Value.Version}");
+        Console.WriteLine($"Author: {project.Value.Author}");
+        Console.WriteLine($"Path: {project.Value.Path}");
     }
 }

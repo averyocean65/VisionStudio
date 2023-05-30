@@ -33,7 +33,7 @@ public static class ProjectManager
                    .Any(x => x.EndsWith("manifest.json"));
     }
 
-    public static void AddProject(string path)
+    public static bool AddProject(string path)
     {
         string projectListPath = ProjectListPath();
         
@@ -42,13 +42,14 @@ public static class ProjectManager
             .Count(x => x == path);
         
         if(count > 0)
-            return;
+            return false;
         
         // Check if project is valid
         if(!IsValidProject(path))
-            return;
+            return false;
         
         IO.AppendFile(projectListPath, path + "\n");
+        return true;
     }
 
     public static string[] GetProjects()

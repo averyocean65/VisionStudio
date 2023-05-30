@@ -4,7 +4,7 @@ public static class Init
 {
     public static bool Initialize()
     {
-        Projects.InitProjectList();
+        ProjectManager.InitProjectList();
         return true;
     }
 }

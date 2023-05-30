@@ -17,7 +17,7 @@ public static class Projects
     {
         return Directory.Exists(path) &&
                Directory.GetFiles(path)
-                   .Contains("manifest.json");
+                   .Any(x => x.EndsWith("manifest.json"));
     }
 
     public static void AddProject(string path)
@@ -30,7 +30,11 @@ public static class Projects
         
         if(count > 0)
             return;
-
+        
+        // Check if project is valid
+        if(!IsValidProject(path))
+            return;
+        
         IO.AppendFile(projectListPath, path + "\n");
     }
 

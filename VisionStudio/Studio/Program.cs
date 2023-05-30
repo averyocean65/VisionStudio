@@ -20,10 +20,5 @@ public class Program
         Console.WriteLine("Current Projects:");
         foreach(string project in Core.Projects.GetProjects())
             Console.WriteLine(project);
-        
-        Console.WriteLine("Press Enter to continue...");
-        Console.ReadLine();
-        
-        Core.Projects.DeleteProject("C:\\MyProject");
     }
 }

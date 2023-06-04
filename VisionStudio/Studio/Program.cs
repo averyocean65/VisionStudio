@@ -1,4 +1,5 @@
 ﻿using Gtk;
+using Studio.Window;
 
 namespace Studio;
 
@@ -11,26 +12,7 @@ public class Program
 
         Application.Init();
 
-        Window window = new Window("Vision Studio");
-        window.SetDefaultSize(250, 100);
-        window.DeleteEvent += (sender, args) => { Application.Quit(); };
-
-        // Create a vertical box container
-        Box box = new Box(Orientation.Vertical, 10);
-        window.Add(box);
-
-        // Create a label
-        Label label = new Label("Welcome to Vision Studio!");
-
-        // Create a button
-        Button button = new Button("Click me!");
-        button.Clicked += (sender, eventArgs) => { Console.WriteLine("Hello!"); };
-
-        // Add the label and button to the box
-        box.PackStart(label, true, true, 0);
-        box.PackStart(button, false, false, 0);
-
-        // Show all the widgets
+        MainWindow window = new MainWindow();
         window.ShowAll();
 
         Application.Run();

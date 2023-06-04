@@ -22,23 +22,71 @@ public class ProjectExplorer : Box
         treeView.AppendColumn("Project", new CellRendererText(), "text", 0);
 
         // Handle selection changed event
-        treeView.ButtonPressEvent += OnSelectionChanged;
+        treeView.ButtonPressEvent += OnButtonPress;
+        treeView.Selection.Changed += OnSelectionChanged;
     }
 
-    public void AddProject(string title, Project project)
-    {
-        listStore.AppendValues(title, project);
-    }
+    public Project? selection { get; private set; }
 
-    private void OnSelectionChanged(object sender, EventArgs e)
+    private Core.Project? GetProject()
     {
         if (treeView.Selection.GetSelected(out TreeIter iter))
         {
             string title = (string)listStore.GetValue(iter, 0);
-            Project project = (Project)listStore.GetValue(iter, 1);
-            Console.WriteLine("Selected Project: " + project.Name);
-            Console.WriteLine("Project Path: " + project.Path);
-            Console.WriteLine("Project Author: " + project.Author);
+            return (Project)listStore.GetValue(iter, 1);
         }
+
+        return null;
+    }
+
+    private void OnSelectionChanged(object? sender, EventArgs e)
+    {
+        selection = GetProject();
+    }
+
+    public void AddProject(Project project)
+    {
+        bool success = Core.ProjectManager.AddProject(project.Path);
+        if (!success)
+            return;
+
+        DisplayProject(project);
+    }
+
+    public void DisplayProject(Project project)
+    {
+        listStore.AppendValues(project.Name, project);
+        treeView.QueueDraw();
+    }
+
+    public void RemoveProject(string path)
+    {
+        TreeIter iter;
+
+        for (bool valid = listStore.GetIterFirst(out iter); valid; valid = listStore.IterNext(ref iter))
+        {
+            var project = (Project)listStore.GetValue(iter, 1);
+            if (project.Path == path)
+            {
+                listStore.Remove(ref iter);
+                break;
+            }
+        }
+
+        Core.ProjectManager.DeleteProject(path);
+
+        treeView.QueueDraw();
+    }
+
+    private void OnButtonPress(object sender, EventArgs e)
+    {
+        Core.Project? project = GetProject();
+        if (!project.HasValue)
+            return;
+
+        Console.WriteLine($"Name:\t\t {project.Value.Name}");
+        Console.WriteLine($"Path:\t\t {project.Value.Path}");
+        Console.WriteLine($"Author:\t\t {project.Value.Author}");
+        Console.WriteLine($"Version:\t {project.Value.Version}");
     }
 }

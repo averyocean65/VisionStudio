@@ -13,7 +13,7 @@ public class MainWindow : Gtk.Window
         Title = "Vision Studio";
         DeleteEvent += Window_DeleteEvent;
 
-        explorer = new ProjectExplorer();
+        explorer = new ProjectExplorer(this);
         LoadProjects();
 
         Box container = new Box(Orientation.Vertical, 0);

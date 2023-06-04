@@ -1,5 +1,6 @@
 using Core;
 using Gtk;
+using Studio.Window;
 
 namespace Studio.Visual;
 
@@ -8,8 +9,12 @@ public class ProjectExplorer : Box
     private ListStore listStore;
     private TreeView treeView;
 
-    public ProjectExplorer() : base(Orientation.Vertical, 0)
+    public MainWindow mainWindow;
+    
+    public ProjectExplorer(MainWindow window) : base(Orientation.Vertical, 0)
     {
+        mainWindow = window;
+        
         // Create the TreeView
         treeView = new TreeView();
         PackStart(treeView, true, true, 0);
@@ -88,5 +93,10 @@ public class ProjectExplorer : Box
         Console.WriteLine($"Path:\t\t {project.Value.Path}");
         Console.WriteLine($"Author:\t\t {project.Value.Author}");
         Console.WriteLine($"Version:\t {project.Value.Version}");
+
+        EditorWindow window = new EditorWindow();
+        window.ShowAll();
+        
+        mainWindow.Hide();
     }
 }

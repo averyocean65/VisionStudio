@@ -1,7 +1,10 @@
+# ISO Files
 iso/
 *.iso
 
+# Build Files
 obj/
 bin/
 
+# Visual Studio Code
 .vscode/

@@ -57,7 +57,7 @@ public class MainWindow : Gtk.Window
 
     private async void OnAddButtonClicked(object? sender, EventArgs e)
     {
-        string path = await PromptInput("Input Path!", "Enter Project Path: ");
+        string path = await PromptInput("Input Path", "Enter Project Path: ");
         Core.Project? project = Core.ProjectManager.LoadProject(path);
 
         if (!project.HasValue)
@@ -71,7 +71,7 @@ public class MainWindow : Gtk.Window
         var tcs = new TaskCompletionSource<string>();
 
         Dialog dialog = new Dialog();
-        dialog.SetDefaultSize(500, 75);
+        dialog.SetDefaultSize(500, 90);
 
         dialog.Title = title;
         dialog.Modal = true;
@@ -79,6 +79,9 @@ public class MainWindow : Gtk.Window
 
         Entry entry = new Entry();
         entry.WidthChars = 20;
+        
+        Label label = new Label(message);
+        dialog.ContentArea.PackStart(label, false, false, 0);
         dialog.ContentArea.PackStart(entry, false, false, 0);
 
         Button ok = new Button("OK");

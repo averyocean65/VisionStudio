@@ -79,7 +79,6 @@ public class ProjectExplorer : Box
         }
 
         Core.ProjectManager.DeleteProject(path);
-
         treeView.QueueDraw();
     }
 
@@ -94,7 +93,7 @@ public class ProjectExplorer : Box
         Console.WriteLine($"Author:\t\t {project.Value.Author}");
         Console.WriteLine($"Version:\t {project.Value.Version}");
 
-        EditorWindow window = new EditorWindow();
+        EditorWindow window = new EditorWindow(project.Value.Path);
         window.ShowAll();
         
         mainWindow.Hide();
